@@ -1,0 +1,35 @@
+# The goal is to find the array containing [x**2 for x in range(1, 10)].
+
+parent.0 = ../../simple/simple.params
+pop.subpop.0.size = 100
+generations = 20000
+
+# we use integers
+pop.subpop.0.species = ec.vector.IntegerVectorSpecies
+pop.subpop.0.species.fitness = ec.simple.SimpleFitness
+pop.subpop.0.species.ind = ec.vector.IntegerVectorIndividual
+
+pop.subpop.0.species.min-gene = 0
+pop.subpop.0.species.max-gene = 100
+
+# 10 integers per vector
+pop.subpop.0.species.genome-size = 10
+
+# uniform crossover
+pop.subpop.0.species.crossover-type = any
+pop.subpop.0.species.crossover-prob = 0.3
+
+pop.subpop.0.species.mutation-prob = 0.1
+pop.subpop.0.species.pipe = ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0 = ec.vector.breed.VectorCrossoverPipeline
+
+select.tournament.size = 3
+pop.subpop.0.species.pipe.source.0.source.0 = ec.select.TournamentSelection
+# use roulette wheel selection just to try something different from tournaments
+pop.subpop.0.species.pipe.source.0.source.1 = ec.select.FitProportionateSelection
+
+# our fitness function is defined there
+eval.problem = ec.app.squares.Squares
+
+# to avoid division by 0 in the fitness computation
+problem.squares.fitness-epsilon = 0.001

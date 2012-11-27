@@ -49,7 +49,7 @@ public class Squares extends Problem implements SimpleProblemForm {
         }
 
         // + .001 to avoid division by 0
-        ((SimpleFitness)iInd.fitness).setFitness(state, 1.f / (fitness + .001f), fitness == 0.f);
+        ((SimpleFitness)iInd.fitness).setFitness(state, 1.f / (fitness + (float)epsilon), fitness == 0.f);
         iInd.evaluated = true;
     }
 }

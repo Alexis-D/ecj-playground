@@ -1,0 +1,43 @@
+# The goal is to find an array of 10 floats that maximize the product of all
+# its members. Each float is in [0; 1].
+
+# use sane defaults
+parent.0 = ../../simple/simple.params
+
+# number of individuals by generation
+pop.subpop.0.size = 100
+
+# number of generations
+generations = 20000
+
+# we use float vector individuals
+pop.subpop.0.species = ec.vector.FloatVectorSpecies
+pop.subpop.0.species.fitness = ec.simple.SimpleFitness
+pop.subpop.0.species.ind = ec.vector.FloatVectorIndividual
+
+# values are bound between 0 & 1
+pop.subpop.0.species.min-gene = 0
+pop.subpop.0.species.max-gene = 1
+
+# 10 floats per vector
+pop.subpop.0.species.genome-size = 10
+
+# crossover at a single point
+pop.subpop.0.species.crossover-type = one
+
+# straightforward, right?
+pop.subpop.0.species.mutation-prob = 0.1
+
+# use the pipeline associated to vectors
+pop.subpop.0.species.pipe = ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0 = ec.vector.breed.VectorCrossoverPipeline
+
+# to select individuals who will be used to create the next generation run a
+# tournament with 3 individuals and pick the best one. Select both parents with
+# the same strategy.
+select.tournament.size = 3
+pop.subpop.0.species.pipe.source.0.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.1 = same
+
+# our fitness function is defined there
+eval.problem = ec.app.product.Product

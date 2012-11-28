@@ -1,1 +1,8 @@
 *.class
+CHANGES
+docs
+LICENSE
+Makefile.original
+out.stat
+README
+start

@@ -49,3 +49,7 @@ evalthreads = 3
 seed.0 = time
 seed.1 = time
 seed.2 = time
+
+# fancy stats
+stat.num-children = 1
+stat.child.0 = ec.stats.ChartedStatistics

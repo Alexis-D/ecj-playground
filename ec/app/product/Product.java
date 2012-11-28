@@ -23,18 +23,18 @@ public class Product extends Problem implements SimpleProblemForm {
             return;
         }
 
-        if(!(ind instanceof FloatVectorIndividual)) {
-            state.output.fatal("ind should be an FloatVectorIndividual", null);
+        if(!(ind instanceof DoubleVectorIndividual)) {
+            state.output.fatal("ind should be an DoubleVectorIndividual", null);
         }
 
-        float fitness = 1.f;
-        FloatVectorIndividual fInd = (FloatVectorIndividual)ind;
+        double fitness = 1.f;
+        DoubleVectorIndividual fInd = (DoubleVectorIndividual)ind;
 
-        for(float v : fInd.genome) {
+        for(double v : fInd.genome) {
             fitness *= v;  // compute fitness
         }
 
-        ((SimpleFitness)fInd.fitness).setFitness(state, fitness, fitness == 1.);
+        ((SimpleFitness)fInd.fitness).setFitness(state, (float)fitness, fitness == 1.d);
         fInd.evaluated = true;
     }
 }

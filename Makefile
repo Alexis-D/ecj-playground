@@ -12,3 +12,6 @@ squares:
 
 run_squares: squares
 	java ec.Evolve -file ec/app/squares/squares.params
+
+console:
+	java -cp '.:*' ec.display.Console

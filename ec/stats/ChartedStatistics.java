@@ -38,7 +38,7 @@ public class ChartedStatistics extends XYSeriesChartStatistics {
         // TODO(alexis): do not assume a single subpop.
         // Java 1.4 → no for each...
         for(int i = 0; i < state.population.subpops[0].individuals.length; ++i) {
-            DoubleVectorIndividual ind = (DoubleVectorIndividual)state.population.subpops[0].individuals[i];
+            Individual ind = state.population.subpops[0].individuals[i];
             if(ind.fitness.fitness() > bestFitnessSoFar) {
                 bestFitnessSoFar = ind.fitness.fitness();
             }

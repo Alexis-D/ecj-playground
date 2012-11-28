@@ -33,3 +33,6 @@ eval.problem = ec.app.squares.Squares
 
 # to avoid division by 0 in the fitness computation
 problem.squares.fitness-epsilon = 0.001
+
+stat.num-children = 1
+stat.child.0 = ec.stats.ChartedStatistics

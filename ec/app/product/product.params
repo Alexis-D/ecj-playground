@@ -8,7 +8,7 @@ parent.0 = ../../simple/simple.params
 pop.subpop.0.size = 100
 
 # number of generations
-generations = 20000
+generations = 2000
 
 # we use double vector individuals
 pop.subpop.0.species = ec.vector.FloatVectorSpecies
@@ -41,3 +41,11 @@ pop.subpop.0.species.pipe.source.0.source.1 = same
 
 # our fitness function is defined there
 eval.problem = ec.app.product.Product
+
+# speed things up
+breedthreads = 3
+evalthreads = 3
+
+seed.0 = time
+seed.1 = time
+seed.2 = time

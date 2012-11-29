@@ -13,7 +13,7 @@ import ec.vector.*;
 import org.jfree.chart.JFreeChart;
 
 public class ChartedStatistics extends AbstractChartedStatistics {
-    Fitness[] bestFitnessesSoFar;
+    Fitness[] bestFitnessesSoFar = null;  // indexed by subpop
 
     public void postInitializationStatistics(EvolutionState state) {
         super.postInitializationStatistics(state);
@@ -22,6 +22,7 @@ public class ChartedStatistics extends AbstractChartedStatistics {
 
         for(int i = 0; i < bestFitnessesSoFar.length; ++i) {
             // java 1.4 no String.format
+            // TODO(alexis): parameters?
             addSeries("Best fitness (subpop #" + Integer.toString(i) + ")");
             addSeries("Average fitness (subpop #)" + Integer.toString(i) + ")");
         }
@@ -30,11 +31,13 @@ public class ChartedStatistics extends AbstractChartedStatistics {
     public void postEvaluationStatistics(EvolutionState state) {
         super.postEvaluationStatistics(state);
 
-        for(int i = 0; i < bestFitnessesSoFar.length; ++i) {
+        for(int i = 0; i < state.population.subpops.length; ++i) {
             float fitnessesSum = 0.f;
 
             for(int j = 0; j < state.population.subpops[i].individuals.length; ++j) {
                 Individual ind = state.population.subpops[i].individuals[j];
+
+                // this keeps tracks of the previous best, and overwrite it only if we've found better
                 if(bestFitnessesSoFar[i] == null || ind.fitness.betterThan(bestFitnessesSoFar[i])) {
                     bestFitnessesSoFar[i] = ind.fitness;
                 }

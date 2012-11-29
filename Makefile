@@ -1,17 +1,19 @@
+CP=-cp '.:*'
+RUN=java ${CP} ec.Evolve -file
 product:
-	javac -cp . ec/app/product/Product.java
+	javac ${CP} ec/app/product/Product.java
 
 run_product: product
-	java ec.Evolve -file ec/app/product/product.params
+	${RUN} ec/app/product/product.params
 
 run_product_de: product
-	java ec.Evolve -file ec/app/product/product.de.params
+	${RUN} ec/app/product/product.de.params
 
 squares:
-	javac -cp . ec/app/squares/Squares.java
+	javac ${CP} ec/app/squares/Squares.java
 
 run_squares: squares
-	java ec.Evolve -file ec/app/squares/squares.params
+	${RUN} ec/app/squares/squares.params
 
 console:
-	java -cp '.:*' ec.display.Console
+	java ${CP} ec.display.Console

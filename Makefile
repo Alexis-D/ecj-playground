@@ -1,7 +1,7 @@
 CP=-cp '.:*'
 RUN=java ${CP} ec.Evolve -file
 product:
-	javac ${CP} ec/app/product/Product.java
+	javac ${CP} ec/app/product/*.java
 
 run_product: product
 	${RUN} ec/app/product/product.params

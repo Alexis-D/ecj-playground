@@ -60,6 +60,7 @@ ec/app/twobox/*.java \
 ec/app/twobox/func/*.java \
 ec/breed/*.java \
 ec/coevolve/*.java \
+ec/custom/*.java \
 ec/de/*.java \
 ec/es/*.java \
 ec/eval/*.java \

@@ -32,7 +32,7 @@ public abstract class AbstractChartedStatistics extends XYSeriesChartStatistics 
     public void finalStatistics(EvolutionState state, int result) {
         if(saveToImage) {
             try {
-                File outFile = new File(filename.replaceAll("%fmt%", (new Date()).toString()));
+                File outFile = new File(filename.replaceAll("%date%", (new Date()).toString()));
                 javax.imageio.ImageIO.write(makeChart().createBufferedImage(width, height),
                         filename.substring(filename.lastIndexOf('.') + 1),
                         outFile);

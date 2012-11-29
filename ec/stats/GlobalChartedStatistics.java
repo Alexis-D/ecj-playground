@@ -13,14 +13,20 @@ import org.jfree.chart.JFreeChart;
 
 public class GlobalChartedStatistics extends AbstractChartedStatistics {
     // a singleton would be better, but it's not really possible due to how ECJ constructs objects
-    static Fitness[] bestFitnesses = null;
-    static float[] fitnessesSum = null;
-    static int numberOfIndividualsPerGenerations = 0;
-    static int numberOfJobs;
+    private static Fitness[] bestFitnesses = null;
+    private static float[] fitnessesSum = null;
+    private static int numberOfIndividualsPerGenerations = 0;
+    private static int numberOfJobs;
+    private static String bestDescription;
+    private static String averageDescription;
 
     public void setup(EvolutionState state, final Parameter base) {
         super.setup(state, base);
         numberOfJobs = state.parameters.getIntWithDefault(new Parameter("jobs"), null, 1);
+
+        title = title.replaceAll("%jobs%", String.valueOf(numberOfJobs));
+        bestDescription = state.parameters.getStringWithDefault(base.push("best-description"), null, "Best fitness (across all jobs/subpops)");
+        averageDescription = state.parameters.getStringWithDefault(base.push("average-description"), null, "Average fitness (across all jobs/subpops)");
     }
 
     public void postInitializationStatistics(EvolutionState state) {
@@ -56,10 +62,11 @@ public class GlobalChartedStatistics extends AbstractChartedStatistics {
     }
 
     public void finalStatistics(EvolutionState state, int result) {
-        if(getCurrentJob(state) == numberOfJobs - 1) {
-            addSeries("Best fitness (across all jobs/subpops)");
-            addSeries("Average fitness (across all jobs/subpops)");
+        title = title.replaceAll("%individuals%", String.valueOf(numberOfIndividualsPerGenerations));
 
+        if(getCurrentJob(state) == numberOfJobs - 1) {
+            addSeries(bestDescription);
+            addSeries(averageDescription);
             Fitness bestSoFar = bestFitnesses[0];  // keep track of the very best fitness
 
             for(int i = 0; i < bestFitnesses.length; ++i) {

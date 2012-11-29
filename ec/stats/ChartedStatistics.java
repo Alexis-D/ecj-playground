@@ -13,7 +13,7 @@ import ec.vector.*;
 import org.jfree.chart.JFreeChart;
 
 public class ChartedStatistics extends AbstractChartedStatistics {
-    Fitness[] bestFitnessesSoFar = null;  // indexed by subpop
+    Fitness[] bestFitnessesSoFar;  // indexed by subpop
 
     public void postInitializationStatistics(EvolutionState state) {
         super.postInitializationStatistics(state);

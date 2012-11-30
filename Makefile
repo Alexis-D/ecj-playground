@@ -20,3 +20,5 @@ console:
 
 lib:
 	javac ${CP} ec/stats/*.java ${CP} ec/custom/*.java
+
+all: lib product squares

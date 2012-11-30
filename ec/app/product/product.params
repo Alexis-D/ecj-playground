@@ -55,3 +55,6 @@ stat.num-children = 1
 stat.child.0 = ec.stats.GlobalChartedStatistics
 stat.child.0.filename = output/%date%.png
 stat.child.0.title = Evolution of fitness over time (%jobs% jobs, %individuals% individuals in total)
+
+# custom state that works with ec.custom.Evolver
+state = ec.custom.CustomEvolutionState

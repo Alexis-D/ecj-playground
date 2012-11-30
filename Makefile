@@ -17,3 +17,6 @@ run_squares: squares
 
 console:
 	java ${CP} ec.display.Console
+
+lib:
+	javac ${CP} ec/stats/*.java ${CP} ec/custom/*.java

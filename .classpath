@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ecj"/>
+	<classpathentry kind="lib" path="C:/Users/alexis/pfe/jars/itext-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexis/pfe/jars/jcommon-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexis/pfe/jars/jfreechart-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexis/pfe/jars/jzlib-1.0.7.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

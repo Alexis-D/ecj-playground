@@ -1,4 +1,4 @@
-parent.0 = ../../de/de.params
+parent.0 = ../../../../ecj/ecj/ec/de/de.params
 parent.1 = product.params
 
 pop.subpop.0.species.mutation-type = gauss

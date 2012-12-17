@@ -5,6 +5,7 @@ import ec.simple.*;
 import ec.util.*;
 import ec.vector.*;
 
+@SuppressWarnings("serial")
 public class Product extends Problem implements SimpleProblemForm {
     public static final String P_PRODUCT = "product";
 

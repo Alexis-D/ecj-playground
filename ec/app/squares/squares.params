@@ -1,6 +1,6 @@
 # The goal is to find the array containing [x**2 for x in range(1, 10)].
 
-parent.0 = ../../simple/simple.params
+parent.0 = ../../../../ecj/ecj/ec/simple/simple.params
 pop.subpop.0.size = 100
 generations = 20000
 

@@ -2,7 +2,7 @@
 # its members. Each double is in [0; 1].
 
 # use sane defaults
-parent.0 = ../../simple/simple.params
+parent.0 = ../../../../ecj/ecj/ec/simple/simple.params
 
 # number of individuals by generation
 pop.subpop.0.size = 100

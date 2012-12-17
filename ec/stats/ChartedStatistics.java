@@ -1,52 +1,48 @@
 package ec.stats;
 
-import java.io.File;
-import java.util.Date;
+import ec.EvolutionState;
+import ec.Fitness;
+import ec.Individual;
 
-import ec.*;
-import ec.display.chart.*;
-import ec.simple.*;
-import ec.stats.*;
-import ec.util.*;
-import ec.vector.*;
-
-import org.jfree.chart.JFreeChart;
-
+@SuppressWarnings("serial")
 public class ChartedStatistics extends AbstractChartedStatistics {
-    Fitness[] bestFitnessesSoFar;  // indexed by subpop
+	Fitness[] bestFitnessesSoFar; // indexed by subpop
 
-    public void postInitializationStatistics(EvolutionState state) {
-        super.postInitializationStatistics(state);
+	public void postInitializationStatistics(EvolutionState state) {
+		super.postInitializationStatistics(state);
 
-        bestFitnessesSoFar = new Fitness[state.population.subpops.length];
+		bestFitnessesSoFar = new Fitness[state.population.subpops.length];
 
-        for(int i = 0; i < bestFitnessesSoFar.length; ++i) {
-            // java 1.4 no String.format
-            // TODO(alexis): parameters?
-            addSeries("Best fitness (subpop #" + Integer.toString(i) + ")");
-            addSeries("Average fitness (subpop #)" + Integer.toString(i) + ")");
-        }
-    }
+		for (int i = 0; i < bestFitnessesSoFar.length; ++i) {
+			// java 1.4 no String.format
+			// TODO(alexis): parameters?
+			addSeries("Best fitness (subpop #" + Integer.toString(i) + ")");
+			addSeries("Average fitness (subpop #)" + Integer.toString(i) + ")");
+		}
+	}
 
-    public void postEvaluationStatistics(EvolutionState state) {
-        super.postEvaluationStatistics(state);
+	public void postEvaluationStatistics(EvolutionState state) {
+		super.postEvaluationStatistics(state);
 
-        for(int i = 0; i < state.population.subpops.length; ++i) {
-            float fitnessesSum = 0.f;
+		for (int i = 0; i < state.population.subpops.length; ++i) {
+			float fitnessesSum = 0.f;
 
-            for(int j = 0; j < state.population.subpops[i].individuals.length; ++j) {
-                Individual ind = state.population.subpops[i].individuals[j];
+			for (int j = 0; j < state.population.subpops[i].individuals.length; ++j) {
+				Individual ind = state.population.subpops[i].individuals[j];
 
-                // this keeps tracks of the previous best, and overwrite it only if we've found better
-                if(bestFitnessesSoFar[i] == null || ind.fitness.betterThan(bestFitnessesSoFar[i])) {
-                    bestFitnessesSoFar[i] = ind.fitness;
-                }
+				// this keeps tracks of the previous best, and overwrite it only
+				// if we've found better
+				if (bestFitnessesSoFar[i] == null
+						|| ind.fitness.betterThan(bestFitnessesSoFar[i])) {
+					bestFitnessesSoFar[i] = ind.fitness;
+				}
 
-                fitnessesSum += ind.fitness.fitness();
-            }
+				fitnessesSum += ind.fitness.fitness();
+			}
 
-            addDataPoint(0, state.generation, bestFitnessesSoFar[i].fitness());
-            addDataPoint(1, state.generation, fitnessesSum / state.population.subpops[i].individuals.length);
-        }
-    }
+			addDataPoint(0, state.generation, bestFitnessesSoFar[i].fitness());
+			addDataPoint(1, state.generation, fitnessesSum
+					/ state.population.subpops[i].individuals.length);
+		}
+	}
 }
